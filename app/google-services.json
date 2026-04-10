@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "782976359947",
+    "project_id": "language-6fd70",
+    "storage_bucket": "language-6fd70.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782976359947:android:02a6069a12c8c0ccf0b10e",
+        "android_client_info": {
+          "package_name": "hcmute.edu.vn.snaplearn"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSPpA0YEM2L-JyTlo4HeXq6ryDOuwBbiU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
