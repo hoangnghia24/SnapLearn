@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SnapLearn">
         <activity
-            android:name=".MainActivity"
+            android:name=".views.auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,14 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".views.auth.RegisterActivity"
+            android:exported="false" />
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="ocr" />
-        <!-- To use multiple models: android:value="ocr,ocr_chinese,ocr_devanagari,ocr_japanese,ocr_korean,..." -->
-        <meta-data
-            android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="langid" />
-        <!-- To use multiple models: android:value="langid,model2,model3" -->
+            android:value="ocr,langid"
+            />
     </application>
 
 </manifest>
