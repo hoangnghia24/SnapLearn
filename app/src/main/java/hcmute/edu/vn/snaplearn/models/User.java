@@ -14,7 +14,6 @@ public class User {
     private int studiedDay;
     private List<FlashCast> flashCasts;
     private List<Exam> exams;
-    private List<Language> languages;
     private ERole role;
 
     public User() {
@@ -73,14 +72,6 @@ public class User {
 
     public void setExams(List<Exam> exams) {
         this.exams = exams;
-    }
-
-    public List<Language> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(List<Language> languages) {
-        this.languages = languages;
     }
 
     public ERole getRole() {

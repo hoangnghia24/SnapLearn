@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SnapLearn">
         <activity
-            android:name=".views.auth.LoginActivity"
+            android:name=".views.activities.UserActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
