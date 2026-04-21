@@ -53,17 +53,15 @@
             android:textColor="#AFAFAF" />
     </LinearLayout>
 
-    <GridLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTopics"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:padding="10dp"
-        android:columnCount="2"
         app:layout_constraintTop_toBottomOf="@id/search_bar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-    </GridLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

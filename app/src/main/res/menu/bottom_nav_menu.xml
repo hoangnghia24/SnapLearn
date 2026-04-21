@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_home"
         android:title="Trang chủ" />
     <item
-        android:id="@+id/nav_search"
+        android:id="@+id/nav_add"
         android:icon="@drawable/ic_add"
         android:title="Tạo" />
     <item

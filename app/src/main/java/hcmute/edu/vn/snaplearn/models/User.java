@@ -12,7 +12,7 @@ public class User {
     private String fullName;
     private String gmail;
     private int studiedDay;
-    private List<FlashCast> flashCasts;
+    private List<Flashcard> flashcards;
     private List<Exam> exams;
     private ERole role;
 
@@ -58,12 +58,12 @@ public class User {
         this.studiedDay = studiedDay;
     }
 
-    public List<FlashCast> getFlashCasts() {
-        return flashCasts;
+    public List<Flashcard> getFlashCasts() {
+        return flashcards;
     }
 
-    public void setFlashCasts(List<FlashCast> flashCasts) {
-        this.flashCasts = flashCasts;
+    public void setFlashCasts(List<Flashcard> flashcards) {
+        this.flashcards = flashcards;
     }
 
     public List<Exam> getExams() {

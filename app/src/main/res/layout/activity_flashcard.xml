@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".views.activities.FlashcardActivity">
+
+    <LinearLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_menu_revert"
+            app:tint="#AFAFAF" />
+
+        <TextView
+            android:id="@+id/tvTopicTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="GREETINGS"
+            android:textColor="#4B4B4B"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnMoreOptions"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_more_vert"
+            app:tint="#AFAFAF" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLearning"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="12dp"
+        android:layout_marginHorizontal="24dp"
+        android:progress="30"
+        android:progressDrawable="@drawable/bg_progress_custom"
+        app:layout_constraintEnd_toStartOf="@+id/tvProgressText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
+    <TextView
+        android:id="@+id/tvProgressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="3/10"
+        android:textColor="#AFAFAF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/pbLearning"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/pbLearning" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vpFlashcards"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginVertical="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pbLearning" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
