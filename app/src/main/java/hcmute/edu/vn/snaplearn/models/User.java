@@ -2,16 +2,16 @@ package hcmute.edu.vn.snaplearn.models;
 
 import com.google.firebase.firestore.DocumentId;
 
+import java.io.Serializable;
 import java.util.List;
 
 import hcmute.edu.vn.snaplearn.enums.ERole;
 
-public class User {
+public class User implements Serializable {
     @DocumentId
     private String userId;
     private String fullName;
     private String gmail;
-    private List<Flashcard> flashcards;
     private ERole role;
 
     public User() {
@@ -45,14 +45,6 @@ public class User {
 
     public void setGmail(String gmail) {
         this.gmail = gmail;
-    }
-
-    public List<Flashcard> getFlashCasts() {
-        return flashcards;
-    }
-
-    public void setFlashCasts(List<Flashcard> flashcards) {
-        this.flashcards = flashcards;
     }
 
     public ERole getRole() {

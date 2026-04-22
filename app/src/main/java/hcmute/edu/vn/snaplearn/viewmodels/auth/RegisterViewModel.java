@@ -45,7 +45,7 @@ public class RegisterViewModel extends ViewModel {
             @Override
             public void onSuccess(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    User newUser = new User(email, fullName);
+                    User newUser = new User(fullName,email);
                     newUser.setUserId(firebaseUser.getUid());
                     userRepository.addUser(newUser, new UserRepository.OnUserSaveListener() {
                         @Override

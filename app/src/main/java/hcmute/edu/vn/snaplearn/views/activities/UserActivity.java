@@ -9,16 +9,21 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import hcmute.edu.vn.snaplearn.R;
+import hcmute.edu.vn.snaplearn.models.User;
+import hcmute.edu.vn.snaplearn.views.fragments.EditProfileFragment;
 import hcmute.edu.vn.snaplearn.views.fragments.HomeFragment;
+import hcmute.edu.vn.snaplearn.views.fragments.LearnFragment;
 import hcmute.edu.vn.snaplearn.views.fragments.QuestionFragment;
 import hcmute.edu.vn.snaplearn.views.fragments.TopicFragment;
 
 public class UserActivity extends AppCompatActivity {
     private BottomNavigationView bottom_nav_menu;
+    private User currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        currentUser = (User) getIntent().getSerializableExtra("CURRENT_USER");
         setContentView(R.layout.activity_user);
         init();
     }
@@ -41,7 +46,15 @@ public class UserActivity extends AppCompatActivity {
                 loadFragment(new TopicFragment());
                 return true;
             }else if(id == R.id.nav_learn){
-                loadFragment(new QuestionFragment());
+                loadFragment(new LearnFragment());
+                return true;
+            } else if (id == R.id.nav_profile) {
+                EditProfileFragment profileFragment = new EditProfileFragment();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("EDIT_USER", currentUser);
+                profileFragment.setArguments(bundle);
+
+                loadFragment(profileFragment);
                 return true;
             }
             return false;

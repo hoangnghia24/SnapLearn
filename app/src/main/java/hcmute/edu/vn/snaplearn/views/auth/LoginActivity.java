@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import hcmute.edu.vn.snaplearn.R;
 import hcmute.edu.vn.snaplearn.viewmodels.auth.LoginViewModel;
+import hcmute.edu.vn.snaplearn.views.activities.UserActivity;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText edtUserNameGmail;
@@ -38,19 +39,30 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void setupViewModel() {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+
         loginViewModel.getIsLoading().observe(this, isLoading -> {
             progressBar.setVisibility(isLoading ? ProgressBar.VISIBLE : ProgressBar.GONE);
             btnLogin.setEnabled(!isLoading);
         });
+
         loginViewModel.getToastMessage().observe(this, message -> {
             if (message != null && !message.isEmpty()) {
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             }
         });
-        loginViewModel.getIsLoginSuccess().observe(this, isSuccess -> {
-            if (isSuccess) {
 
-            }});
+        // LẮNG NGHE OBJECT USER TRẢ VỀ TỪ VIEWMODEL
+        loginViewModel.getLoggedInUser().observe(this, user -> {
+            if (user != null) {
+                Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+
+                // Nhét dữ liệu user thật vào Intent
+                intent.putExtra("CURRENT_USER", user);
+
+                startActivity(intent);
+                finish(); // Đóng màn hình đăng nhập
+            }
+        });
     }
     private void setupListener(){
         btnLogin.setOnClickListener(v -> {
