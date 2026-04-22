@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import hcmute.edu.vn.snaplearn.R;
 import hcmute.edu.vn.snaplearn.views.fragments.HomeFragment;
+import hcmute.edu.vn.snaplearn.views.fragments.QuestionFragment;
 import hcmute.edu.vn.snaplearn.views.fragments.TopicFragment;
 
 public class UserActivity extends AppCompatActivity {
@@ -38,6 +39,9 @@ public class UserActivity extends AppCompatActivity {
                 return true;
             }else if (id == R.id.nav_add) {
                 loadFragment(new TopicFragment());
+                return true;
+            }else if(id == R.id.nav_learn){
+                loadFragment(new QuestionFragment());
                 return true;
             }
             return false;
