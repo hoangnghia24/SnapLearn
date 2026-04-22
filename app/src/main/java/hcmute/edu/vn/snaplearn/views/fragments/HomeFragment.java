@@ -5,24 +5,27 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
-import java.util.List;
 
 import hcmute.edu.vn.snaplearn.R;
 import hcmute.edu.vn.snaplearn.adapters.TopicAdapter;
-import hcmute.edu.vn.snaplearn.models.Flashcard;
 import hcmute.edu.vn.snaplearn.models.Topic;
+import hcmute.edu.vn.snaplearn.viewmodels.HomeViewModel;
 import hcmute.edu.vn.snaplearn.views.activities.FlashcardActivity;
 
 public class HomeFragment extends Fragment {
 
     private RecyclerView rvTopics;
     private TopicAdapter topicAdapter;
+    private HomeViewModel homeViewModel; // Khai báo ViewModel
 
     @Nullable
     @Override
@@ -34,30 +37,36 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initView(view);
-    }
-    private void initView(View view){
-        // 1. Ánh xạ RecyclerView
-        rvTopics = view.findViewById(R.id.rvTopics);
-        List<Flashcard> flashcards = new ArrayList<>();
-        flashcards.add(new Flashcard("1", "Hello", "Xin chào"));
-        flashcards.add(new Flashcard("2", "Book", "Quyển sách"));
 
-        // 2. Khởi tạo Topic bằng constructor của bạn
-        Topic greetingsTopic = new Topic("T01", "GREETINGS", flashcards);
-        Topic greetingsTopic1 = new Topic("T02", "GREETINGS", flashcards);
-        // 2. Tạo dữ liệu mẫu (Sau này bạn sẽ lấy từ Firebase tại đây)
-        List<Topic> topicList = new ArrayList<>();
-        topicList.add(greetingsTopic);
-        topicList.add(greetingsTopic1);
-        // 3. Khởi tạo Adapter
-        topicAdapter = new TopicAdapter(topicList, topic -> {
+        initView(view);
+        setupViewModel(); // Gọi hàm thiết lập ViewModel
+    }
+
+    private void initView(View view) {
+        rvTopics = view.findViewById(R.id.rvTopics);
+
+        // 1. Khởi tạo Adapter với danh sách rỗng ban đầu (Dữ liệu sẽ được nạp từ Firestore sau)
+        topicAdapter = new TopicAdapter(new ArrayList<>(), topic -> {
             Intent intent = new Intent(getActivity(), FlashcardActivity.class);
-            intent.putExtra("FLASHCARD",topic);
+            intent.putExtra("FLASHCARD", topic);
             startActivity(intent);
         });
-        // 4. Thiết lập Grid 2 cột
+
+        // 2. Thiết lập Grid 2 cột
         rvTopics.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rvTopics.setAdapter(topicAdapter);
+    }
+
+    private void setupViewModel() {
+        // 1. Khởi tạo ViewModel gắn với vòng đời của Fragment này
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        // 2. Lắng nghe dữ liệu từ Firestore thông qua LiveData
+        homeViewModel.getTopics().observe(getViewLifecycleOwner(), topics -> {
+            if (topics != null) {
+                // Khi có dữ liệu từ Firebase trả về, cập nhật lên giao diện
+                topicAdapter.updateData(topics);
+            }
+        });
     }
 }

@@ -16,14 +16,6 @@
         android:padding="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="#AFAFAF" />
-
         <TextView
             android:id="@+id/tvTopicTitle"
             android:layout_width="0dp"
@@ -33,7 +25,8 @@
             android:text="GREETINGS"
             android:textColor="#4B4B4B"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:paddingLeft="100dp"/>
 
         <ImageButton
             android:id="@+id/btnMoreOptions"

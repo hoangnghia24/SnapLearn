@@ -61,4 +61,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.TopicViewHol
             imgTopicIcon = itemView.findViewById(R.id.imgTopicIcon);
         }
     }
+    // Đặt hàm này bên trong class TopicAdapter
+    public void updateData(List<Topic> newTopics) {
+        this.topicList.clear(); // Xóa dữ liệu cũ
+        this.topicList.addAll(newTopics); // Thêm dữ liệu mới từ Firestore
+        notifyDataSetChanged(); // Yêu cầu RecyclerView vẽ lại giao diện
+    }
 }
