@@ -26,6 +26,10 @@
             android:exported="false" />
         <activity android:name=".views.activities.FlashcardActivity"
             android:exported="false" />
+        <activity
+            android:name=".views.activities.ScannerActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="ocr,langid"

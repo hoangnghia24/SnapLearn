@@ -1,15 +1,22 @@
 package hcmute.edu.vn.snaplearn.views.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.OptIn;
+import androidx.camera.core.ExperimentalGetImage;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -27,6 +34,7 @@ import hcmute.edu.vn.snaplearn.adapters.FlashcardEditAdapter;
 import hcmute.edu.vn.snaplearn.models.Flashcard;
 import hcmute.edu.vn.snaplearn.models.Topic;
 import hcmute.edu.vn.snaplearn.viewmodels.TopicViewModel; // Import ViewModel
+import hcmute.edu.vn.snaplearn.views.activities.ScannerActivity;
 
 public class TopicFragment extends Fragment {
 
@@ -38,7 +46,7 @@ public class TopicFragment extends Fragment {
     private FlashcardEditAdapter adapter;
     private List<Flashcard> listEditCards;
     private Topic editingTopic;
-
+    private LinearLayout layoutScanCamera;
     private TopicViewModel topicViewModel; // Khai báo ViewModel
 
     @Nullable
@@ -66,6 +74,7 @@ public class TopicFragment extends Fragment {
         fabAddCard = view.findViewById(R.id.fabAddCard);
         edtTopicName = view.findViewById(R.id.edtTopicName); // Ánh xạ EditText
         btnDone = view.findViewById(R.id.btnDone);
+        layoutScanCamera = view.findViewById(R.id.layoutScanCamera);
     }
 
     private void initData() {
@@ -91,13 +100,40 @@ public class TopicFragment extends Fragment {
             listEditCards.add(new Flashcard("", "", ""));
         }
     }
+    private final ActivityResultLauncher<Intent> scanLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Intent data = result.getData();
+                    String wordEn = data.getStringExtra("SCANNED_WORD_EN");
+                    String wordVi = data.getStringExtra("TRANSLATED_WORD_VI");
+                    String phonetic = data.getStringExtra("PHONETIC_TEXT");
 
+                    if (wordEn != null && !wordEn.isEmpty()) {
+                        // Nếu danh sách chỉ có 1 thẻ rỗng (mặc định khi tạo mới), thì xóa nó đi
+                        if (listEditCards.size() == 1 && listEditCards.get(0).getWordEn().isEmpty()) {
+                            listEditCards.clear();
+                        }
+
+                        // Thêm thẻ mới với dữ liệu quét được
+                        // Giả sử constructor của bạn là: Flashcard(wordEn, wordVi, phonetic)
+                        listEditCards.add(new Flashcard(wordEn, wordVi != null ? wordVi : "", phonetic != null ? phonetic : ""));
+
+                        // Cập nhật giao diện
+                        adapter.notifyDataSetChanged();
+                        rvEditFlashcards.smoothScrollToPosition(listEditCards.size() - 1);
+                        Toast.makeText(getContext(), "Đã thêm thẻ từ Camera!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
     private void setupRecyclerView() {
         adapter = new FlashcardEditAdapter(listEditCards);
         rvEditFlashcards.setLayoutManager(new LinearLayoutManager(requireContext()));
         rvEditFlashcards.setAdapter(adapter);
     }
 
+    @OptIn(markerClass = ExperimentalGetImage.class)
     private void setupListeners() {
         fabAddCard.setOnClickListener(v -> {
             listEditCards.add(new Flashcard("", "", ""));
@@ -105,7 +141,11 @@ public class TopicFragment extends Fragment {
             adapter.notifyItemInserted(newPosition);
             rvEditFlashcards.smoothScrollToPosition(newPosition);
         });
-
+        layoutScanCamera.setOnClickListener(v -> {
+            // Mở màn hình ScannerActivity bằng scanLauncher
+            Intent intent = new Intent(getActivity(), ScannerActivity.class);
+            scanLauncher.launch(intent);
+        });
         // ========== XỬ LÝ NÚT LƯU (CẬP NHẬT / TẠO MỚI) ==========
         btnDone.setOnClickListener(v -> {
             // 1. Validate Tên chủ đề

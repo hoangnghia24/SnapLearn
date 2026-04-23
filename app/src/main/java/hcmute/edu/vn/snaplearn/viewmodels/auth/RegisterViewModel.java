@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.firebase.auth.FirebaseUser;
 
+import hcmute.edu.vn.snaplearn.enums.ERole;
 import hcmute.edu.vn.snaplearn.models.User;
 import hcmute.edu.vn.snaplearn.repositories.AuthRepository;
 import hcmute.edu.vn.snaplearn.repositories.UserRepository;
@@ -45,7 +46,7 @@ public class RegisterViewModel extends ViewModel {
             @Override
             public void onSuccess(FirebaseUser firebaseUser) {
                 if (firebaseUser != null) {
-                    User newUser = new User(fullName,email);
+                    User newUser = new User(fullName,email, ERole.USER);
                     newUser.setUserId(firebaseUser.getUid());
                     userRepository.addUser(newUser, new UserRepository.OnUserSaveListener() {
                         @Override

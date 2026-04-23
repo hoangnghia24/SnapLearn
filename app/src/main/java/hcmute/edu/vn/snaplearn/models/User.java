@@ -23,6 +23,12 @@ public class User implements Serializable {
         this.gmail = gmail;
     }
 
+    public User(String fullName, String email, ERole eRole) {
+        this.fullName = fullName;
+        this.gmail = email;
+        this.role = eRole;
+    }
+
     public String getFullName() {
         return fullName;
     }
