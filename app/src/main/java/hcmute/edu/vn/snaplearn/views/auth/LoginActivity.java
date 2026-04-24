@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import hcmute.edu.vn.snaplearn.R;
 import hcmute.edu.vn.snaplearn.viewmodels.auth.LoginViewModel;
+import hcmute.edu.vn.snaplearn.views.activities.ForgotPasswordActivity;
 import hcmute.edu.vn.snaplearn.views.activities.UserActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private LoginViewModel loginViewModel;
     private Button btnRegister;
+    private TextView tvForgotPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.pb_loading);
         btnRegister = findViewById(R.id.btn_register_login);
+        tvForgotPassword = findViewById(R.id.tv_forgot_password);
     }
     private void setupViewModel() {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -71,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
             loginViewModel.login(userNameGmail, password);});
         btnRegister.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);});
+        tvForgotPassword.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
             startActivity(intent);});
     }
 }

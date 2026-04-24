@@ -12,6 +12,11 @@ public class AuthRepository {
         void onSuccess(FirebaseUser firebaseUser);
         void onError(String error);
     }
+    // 1. Thêm một Listener mới dành cho các hành động không trả về FirebaseUser
+    public interface OnActionListener {
+        void onSuccess();
+        void onError(String error);
+    }
     public void registerWithEmail(String email, String password, OnAuthListener listener) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
@@ -46,5 +51,24 @@ public class AuthRepository {
                         listener.onError(task.getException().getMessage());
                     }
                 });
+    }
+    // 2. Thêm hàm gửi email khôi phục mật khẩu
+    public void sendPasswordResetEmail(String email, OnActionListener listener) {
+        auth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        listener.onSuccess();
+                    } else {
+                        if (task.getException() != null) {
+                            listener.onError(task.getException().getMessage());
+                        } else {
+                            listener.onError("Lỗi không xác định");
+                        }
+                    }
+                });
+    }
+    // Thêm vào bên trong class AuthRepository
+    public void logout() {
+        auth.signOut();
     }
 }

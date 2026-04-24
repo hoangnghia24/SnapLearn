@@ -25,6 +25,8 @@
             android:exported="false" />
         <activity android:name=".views.auth.RegisterActivity"
             android:exported="false" />
+        <activity android:name=".views.activities.ForgotPasswordActivity"
+            android:exported="false" />
         <activity android:name=".views.activities.FlashcardActivity"
             android:exported="false" />
         <activity

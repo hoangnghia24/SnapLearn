@@ -47,12 +47,10 @@ public class ScannerActivity extends AppCompatActivity {
     private PreviewView viewFinder;
     private Button btnCapture;
     private ProgressBar progressBar;
-
     private ImageCapture imageCapture; // Thay ImageAnalysis bằng ImageCapture
     private ExecutorService cameraExecutor;
     private TextRecognizer textRecognizer;
     private ScannerViewModel scannerViewModel;
-
     private static final int CAMERA_PERMISSION_CODE = 100;
 
     // Trình hứng kết quả từ màn hình Cắt ảnh (Crop)
@@ -172,9 +170,6 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     // --- BƯỚC 2: CẮT ẢNH ---
-    // --- BƯỚC 2: CẮT ẢNH ---
-    // --- BƯỚC 2: CẮT ẢNH (Bản sửa lỗi Java) ---
-    // --- BƯỚC 2: CẮT ẢNH (Bản chuẩn xác nhất cho Java) ---
     private void launchImageCropper(Uri uri) {
         CropImageOptions options = new CropImageOptions();
 
