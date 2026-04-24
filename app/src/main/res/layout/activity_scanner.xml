@@ -8,27 +8,12 @@
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="#66000000"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvScannedText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:gravity="center"
-        android:text="Đang nhận diện..."
-        android:textColor="#FFFFFF"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:layout_height="0dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnCapture"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintBottom_toTopOf="@id/btnCapture" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -44,13 +29,14 @@
         android:id="@+id/btnCapture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="#4255FF"
         android:paddingHorizontal="32dp"
         android:paddingVertical="12dp"
-        android:text="Bắt chữ"
+        android:text="Chụp ảnh"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        android:elevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
