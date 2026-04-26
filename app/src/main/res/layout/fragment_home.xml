@@ -45,12 +45,17 @@
             android:src="@android:drawable/ic_menu_search"
             app:tint="#AFAFAF" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Tìm kiếm từ vựng..."
-            android:textColor="#AFAFAF" />
+            android:background="@null"
+            android:hint="Tìm kiếm chủ đề..."
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="#4B4B4B"
+            android:textColorHint="#AFAFAF" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

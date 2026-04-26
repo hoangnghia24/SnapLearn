@@ -89,4 +89,6 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
     // Thư viện hỗ trợ cắt ảnh cực xịn (Canhub Image Cropper)
     implementation("com.vanniktech:android-image-cropper:4.6.0")
+    // Thêm dòng này để dùng được thư viện core-splashscreen
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }
