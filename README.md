@@ -30,23 +30,6 @@
 
 ---
 
-## 🛠 Công Nghệ Sử Dụng
-
-| Thành phần | Công nghệ / Thư viện |
-| :--- | :--- |
-| **Lập trình** | Java (Android SDK) |
-| **Kiến trúc** | MVVM + Repository Pattern |
-| **Database** | Firebase Cloud Firestore |
-| **Auth** | Firebase Authentication |
-| **AI/ML** | Google ML Kit (OCR & Translation) |
-| **Camera** | CameraX API |
-| **UI/UX** | ViewPager2, Material Design, CanHub Image Cropper |
-
----
-
-## 📂 Kiến Trúc Hệ Thống
-
-Dự án tuân thủ nghiêm ngặt mô hình **MVVM** để đảm bảo tính dễ bảo trì:
 
 
 
