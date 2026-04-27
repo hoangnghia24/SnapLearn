@@ -32,10 +32,3 @@
 
 
 
-
-* **View**: Đảm nhận hiển thị và lắng nghe sự kiện người dùng (Activity/Fragment).
-* **ViewModel**: Xử lý logic nghiệp vụ và quản lý trạng thái dữ liệu qua LiveData.
-* **Repository**: Quản lý nguồn dữ liệu (Firebase, API, ML Kit).
-* **Model**: Định nghĩa cấu trúc dữ liệu thực tế.
-
----
