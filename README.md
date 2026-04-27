@@ -1,3 +1,4 @@
+# SNAP & LEARN
 Snap & Learn - Ứng dụng Học Từ Vựng Thông Minh
 Snap & Learn là một ứng dụng di động được phát triển trên nền tảng Android, thiết kế để tối ưu hóa quá trình thu thập và ghi nhớ từ vựng thông qua công nghệ trí tuệ nhân tạo (AI) và điện toán đám mây. Ứng dụng giúp người dùng biến các tài liệu thực tế thành các thẻ ghi nhớ (Flashcard) và bài tập trắc nghiệm sinh động chỉ trong vài giây.
 🚀 Tính Năng Cốt Lõi
