@@ -9,7 +9,7 @@
 ## 🚀 Tính Năng Cốt Lõi
 
 ### 1. Xác Thực & Định Danh Người Dùng
-* **Đăng ký/Đăng nhập**: Linh hoạt qua Email hoặc tài khoản Google.
+* **Đăng ký/Đăng nhập**: Linh hoạt qua Email.
 * **Bảo mật**: Tính năng xác thực Email và khôi phục mật khẩu.
 * **Cá nhân hóa**: Quản lý hồ sơ, cập nhật thông tin người dùng.
 
