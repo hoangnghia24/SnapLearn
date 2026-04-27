@@ -32,7 +32,6 @@ public class FlashcardEditAdapter extends RecyclerView.Adapter<FlashcardEditAdap
 
     @Override
     public void onBindViewHolder(@NonNull EditViewHolder holder, int position) {
-        // Adapter giờ đây rất "sạch", chỉ gọi hàm bind của ViewHolder
         holder.bind(listEditCards.get(position));
     }
 
@@ -52,7 +51,6 @@ public class FlashcardEditAdapter extends RecyclerView.Adapter<FlashcardEditAdap
             edtMeaning = itemView.findViewById(R.id.edtMeaning);
         }
 
-        // Đưa toàn bộ logic xử lý UI và Event vào đây (Đảm bảo tính Đóng gói - Encapsulation)
         public void bind(Flashcard card) {
             removeOldWatchers();
 

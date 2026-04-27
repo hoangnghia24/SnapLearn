@@ -75,14 +75,11 @@ public class QuestionFragment extends Fragment {
         vpQuiz.setUserInputEnabled(false);
     }
 
-    // Trong file QuestionFragment.java
-    // Sửa lại hàm setupData() trong QuestionFragment.java
     private void setupData() {
         if (getArguments() != null) {
             String topicId = getArguments().getString("TOPIC_ID");
 
             if (topicId != null) {
-                // CHUẨN MVVM: Gọi ViewModel để lấy dữ liệu
                 TopicViewModel topicViewModel = new ViewModelProvider(this).get(TopicViewModel.class);
 
                 // Lắng nghe dữ liệu câu hỏi từ ViewModel

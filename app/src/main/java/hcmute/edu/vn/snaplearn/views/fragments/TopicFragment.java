@@ -183,7 +183,6 @@ public class TopicFragment extends Fragment {
                 getParentFragmentManager().setFragmentResult("edit_request", result);
             } else {
                 // ĐANG TẠO CHỦ ĐỀ MỚI
-                // Truyền "" (chuỗi rỗng) cho ID, vì Firestore sẽ tự động generate ID cho bạn
                 Topic newTopic = new Topic("", topicName, listEditCards);
 
                 // Gọi ViewModel để tạo mới

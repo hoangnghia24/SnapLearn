@@ -129,7 +129,6 @@ public class ScannerActivity extends AppCompatActivity {
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(viewFinder.getSurfaceProvider());
 
-                // Khởi tạo ImageCapture thay vì ImageAnalysis
                 imageCapture = new ImageCapture.Builder()
                         .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
                         .build();
@@ -173,19 +172,14 @@ public class ScannerActivity extends AppCompatActivity {
     private void launchImageCropper(Uri uri) {
         CropImageOptions options = new CropImageOptions();
 
-        // 1. Tắt các tùy chọn không cần thiết
         options.imageSourceIncludeGallery = false;
         options.imageSourceIncludeCamera = false;
         options.guidelines = com.canhub.cropper.CropImageView.Guidelines.ON;
 
-        // 2. GÁN TRỰC TIẾP GIÁ TRỊ (Không dùng chữ "set" ở đầu)
-        // Thu nhỏ khung cắt vào 15% để tránh dính lên cụm camera (tai thỏ)
         options.initialCropWindowPaddingRatio = 0.15f;
 
-        // Sửa lỗi ở đây: Đổi từ toolbarTitle thành activityTitle
         options.activityTitle = "Kéo khung chọn từ vựng";
 
-        // 3. Khởi chạy màn hình cắt
         CropImageContractOptions contractOptions = new CropImageContractOptions(uri, options);
         cropImageLauncher.launch(contractOptions);
     }
@@ -200,9 +194,6 @@ public class ScannerActivity extends AppCompatActivity {
                         String text = visionText.getText();
                         if (!text.trim().isEmpty()) {
 
-                            // SỬA LẠI TẠI ĐÂY:
-                            // Xóa split, chỉ dùng trim() để xóa khoảng trắng thừa ở 2 đầu
-                            // Thêm replace("\n", " ") để nối các chữ bị rớt dòng thành 1 câu ngang
                             String targetWord = text.trim().replace("\n", " ");
 
                             // Giao cho ViewModel tiếp tục luồng dịch & lấy API

@@ -30,7 +30,6 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
 
     @Override
     public void onBindViewHolder(@NonNull FlashcardViewHolder holder, int position) {
-        // Cực kỳ gọn gàng: Adapter chỉ làm nhiệm vụ truyền dữ liệu
         holder.bind(flashcardList.get(position));
     }
 
@@ -39,13 +38,11 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
         return flashcardList != null ? flashcardList.size() : 0;
     }
 
-    // Lớp ViewHolder giờ đây đảm nhận hoàn toàn việc quản lý UI của chính nó (Đóng gói - Encapsulation)
     public static class FlashcardViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView tvCardWord;
         private final TextView tvCardTranscription;
 
-        // Biến trạng thái để theo dõi thẻ đang ở mặt trước hay mặt sau
         private boolean isShowingFront = true;
 
         public FlashcardViewHolder(@NonNull View itemView) {
@@ -54,13 +51,10 @@ public class FlashcardAdapter extends RecyclerView.Adapter<FlashcardAdapter.Flas
             tvCardTranscription = itemView.findViewById(R.id.tvCardTranscription);
         }
 
-        // Hàm chính để khởi tạo dữ liệu và sự kiện cho thẻ
         public void bind(Flashcard flashcard) {
-            // Đặt lại trạng thái mặc định khi thẻ được tái sử dụng (Recycled)
             isShowingFront = true;
             showFrontSide(flashcard);
 
-            // Gắn sự kiện lật thẻ
             setupFlipListener(flashcard);
         }
 
